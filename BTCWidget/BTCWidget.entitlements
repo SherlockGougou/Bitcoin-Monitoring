@@ -6,9 +6,5 @@
 	<array>
 		<string>group.bitcoin.monitoring.widget</string>
 	</array>
-	<key>com.apple.security.network.server</key>
-	<false/>
-	<key>com.apple.security.user-notifications</key>
-	<true/>
 </dict>
 </plist>

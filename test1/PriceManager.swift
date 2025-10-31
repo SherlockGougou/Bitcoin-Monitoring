@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import WidgetKit
 
 // 价格管理器，负责定时刷新币种价格
 @MainActor
@@ -124,6 +125,9 @@ class PriceManager: ObservableObject {
                 currentPrice = price
                 didUpdatePrice = true
 
+                // 更新小组件数据
+                updateWidgetData()
+
                 #if DEBUG
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -203,6 +207,9 @@ class PriceManager: ObservableObject {
         selectedSymbol = symbol
         currentPrice = 0.0
         lastError = nil
+
+        // 立即更新小组件以显示新的币种（即使价格还是0）
+        updateWidgetData()
 
         Task { [weak self] in
             await self?.fetchPrice()
